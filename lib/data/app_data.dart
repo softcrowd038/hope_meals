@@ -8,6 +8,6 @@ class AppData {
   ];
 }
 
-String baseUrl = 'http://192.168.1.3:8080/api/v1';
+String baseUrl = 'https://hope-meals.co.codiantsolutions.com/api/v1';
 
-String imageBaseUrl = 'http://192.168.1.3:8080/';
+String imageBaseUrl = 'https://hope-meals.co.codiantsolutions.com/';
