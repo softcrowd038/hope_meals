@@ -42,20 +42,28 @@ class _PostCardState extends State<PostCard> {
   }
 
   Future<void> _initializeData() async {
-    postService.postFollowStatus(context, widget.uuid);
-
     followStatusProvider =
         Provider.of<FollowStatusProvider>(context, listen: false);
     followStatusProvider.getFollowerInitialCount(context, widget.uuid);
+
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-    userProvider.fetchUserProfile(widget.uuid);
+    await userProvider.fetchUserProfile(widget.uuid);
+
     final likeStatusProvider =
         Provider.of<LikeStatusProvider>(context, listen: false);
-    likeStatusProvider.fetchLikeStatus(widget.postUuid);
-    likeStatusProvider.getTotalLikes(widget.postUuid);
+    await likeStatusProvider.fetchLikeStatus(widget.postUuid);
+    await likeStatusProvider.getTotalLikes(widget.postUuid);
 
+    postService.postFollowStatus(context, widget.uuid);
     postService.postLikeStatus(context, widget.postUuid);
+
     await _fetchPostData();
+
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   final postService = PostService();
@@ -133,7 +141,7 @@ class _PostCardState extends State<PostCard> {
     // if (userProvider.errorMessage != null) {
     //   return Center(
     //       child: CircularProgressIndicator(
-    //     color: const Color(0xff020053),
+    //     color: Colors.orange,
     //   ));
     // }
 
@@ -308,9 +316,7 @@ class _PostCardState extends State<PostCard> {
                                 isLiked
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: isLiked
-                                    ? const Color(0xff020053)
-                                    : Colors.black,
+                                color: isLiked ? Colors.orange : Colors.black,
                               ),
                               onPressed: () {
                                 likeStatusProvider.toggleLikeStatus(
