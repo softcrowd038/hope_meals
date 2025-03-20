@@ -152,7 +152,7 @@ class _CaptureImageOrVideoPageState extends State<CaptureImageOrVideoPage> {
                         height: MediaQuery.of(context).size.height * 0.090,
                         width: MediaQuery.of(context).size.height * 0.090,
                         decoration: BoxDecoration(
-                          color: Colors.orange,
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(
                             MediaQuery.of(context).size.height * 0.090,
                           ),

@@ -141,7 +141,7 @@ class _PostCardState extends State<PostCard> {
     // if (userProvider.errorMessage != null) {
     //   return Center(
     //       child: CircularProgressIndicator(
-    //     color: Colors.orange,
+    //     color: Colors.blue,
     //   ));
     // }
 
@@ -316,7 +316,7 @@ class _PostCardState extends State<PostCard> {
                                 isLiked
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color: isLiked ? Colors.orange : Colors.black,
+                                color: isLiked ? Colors.blue : Colors.black,
                               ),
                               onPressed: () {
                                 likeStatusProvider.toggleLikeStatus(
